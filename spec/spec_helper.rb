@@ -11,5 +11,5 @@ require 'omniauth-mixi'
 RSpec.configure do |config|
   config.include WebMock::API
   config.include Rack::Test::Methods
-  config.extend OmniAuth::Test::StrategyMacros, :type => :strategy
+  config.extend  OmniAuth::Test::StrategyMacros, :type => :strategy
 end
