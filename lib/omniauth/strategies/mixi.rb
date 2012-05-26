@@ -9,22 +9,29 @@ module OmniAuth
                               :authorize_url => 'https://mixi.jp/connect_authorize.pl',
                               :access_token_url => 'https://secure.mixi-platform.com/2/token'
                               }
-                              
-       option :fields, ["id", "nickname","profileUrl","thumbnailUrl"]
-       uid { access_token.params[:user_id] }
-       
-        info do
+
+      option :fields, ["id", "nickname","profileUrl","thumbnailUrl"]
+
+      uid{ raw_info['id'] }
+
+      info do
         {
           :nickname => raw_info['nickname'],
           :image => raw_info['profileUrl'],
           :urls => {'public_profile' => raw_info['thumbnailUrl']}
         }
       end
-      
-       extra do
+
+      extra do
         { 'raw_info' => raw_info }
       end
-      
+
+      def raw_info
+        @raw_info ||= MultiJson.load(access_token.get("/people/@me/@self?format=json").body)
+      rescue ::Errno::ETIMEDOUT
+        raise ::Timeout::Error
+      end
+
     end
   end
 end

@@ -21,7 +21,16 @@ describe OmniAuth::Strategies::Mixi do
     it 'should have access token url' do
       subject.options.client_options.access_token_url eq("https://secure.mixi-platform.com/2/token")
     end
-    
+  end
+  
+  context '#uid' do
+    before :each do
+      subject.stub(:raw_info) { { 'id' => '123' } }
+    end
+
+    it 'returns the id from raw_info' do
+      subject.uid.should eq('123')
+    end
   end
 
 end
