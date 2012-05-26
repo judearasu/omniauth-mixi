@@ -2,7 +2,7 @@
 
 This gem contains the Mixi strategy for OmniAuth OAuth2.
 
-# Unteste Strategy
+# Untested Strategy
 
 This strategy is an untested version
 ## How To Use It
