@@ -5,3 +5,5 @@ describe OmniAuth::Strategies::Mixi do
     OmniAuth::Strategies::Twitter.new({})
   end
 end
+
+
