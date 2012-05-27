@@ -5,7 +5,7 @@ module OmniAuth
   module Strategies
     class Mixi < OmniAuth::Strategies::OAuth2
       option :name, 'mixi'
-      option :client_options,{:site => 'http://api.mixi-platform.com/',
+      option :client_options,{:site => 'https://mixi.jp/',
                               :authorize_url => 'https://mixi.jp/connect_authorize.pl',
                               :access_token_url => 'https://secure.mixi-platform.com/2/token'
                               }
@@ -16,9 +16,9 @@ module OmniAuth
 
       info do
         {
-          :nickname => raw_info['nickname'],
-          :image => raw_info['profileUrl'],
-          :urls => {'public_profile' => raw_info['thumbnailUrl']}
+          'nickname' => raw_info['entry']['displayName'],
+          'image' => raw_info['entry']['thumbnailUrl'],
+          'urls' => {:profile => raw_info['entry']['profileUrl']}
         }
       end
 
@@ -30,7 +30,7 @@ module OmniAuth
         @raw_info ||= MultiJson.load(access_token.get("/people/@me/@self?format=json").body)
       rescue ::Errno::ETIMEDOUT
         raise ::Timeout::Error
-      end
+        end
 
     end
   end
