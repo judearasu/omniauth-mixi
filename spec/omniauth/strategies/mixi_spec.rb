@@ -11,7 +11,7 @@ describe OmniAuth::Strategies::Mixi do
     end
 
     it 'should have correct site' do
-      subject.options.client_options.site.should eq("http://api.mixi-platform.com/")
+      subject.options.client_options.site.should eq("https://mixi.jp/")
     end
 
     it 'should have authorize url' do

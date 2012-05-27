@@ -1,6 +1,6 @@
 # OmniAuth Mixi
 
-This gem contains the Mixi strategy for OmniAuth OAuth2.
+This is an OmniAuth 2.0 strategy for authenticating to Mixi.
 
 # Untested Strategy
 
